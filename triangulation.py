@@ -37,7 +37,6 @@ def triangulate_depth_householder(observations, poses, base_observation, base_po
     return -m/c
 
 
-
 def project(pose, point):
     return utils.pr(np.dot(pose.orientation, point - pose.position))
 
@@ -104,6 +103,8 @@ def triangulate_depth_sturm_two_views(observation, pose, base_observation, base_
 
 
 def triangulate_depth_sturm(observations, poses, base_observation, base_pose):
+    assert len(observations) > 0
+
     quotients = [reprojection_cost_derivative_poly(observation, pose, base_observation, base_pose)
                  for observation, pose in zip(observations, poses)]
 
